@@ -39,3 +39,42 @@ def extract_aspects(text):
                 found_aspects.append(aspect)
                 break  # No need to check more keywords for this aspect
     return found_aspects
+
+def get_sentiment_label(compound_score):
+    if compound_score >= 0.05:
+        return 'positive'
+    elif compound_score <= -0.05:
+        return 'negative'
+    else:
+        return 'neutral'
+
+import re
+
+def split_on_contrast(text):
+    """Split text into chunks at contrast words like but/however/although"""
+    parts = re.split(r'\bbut\b|\bhowever\b|\balthough\b|\byet\b', text)
+    return [p.strip() for p in parts if p.strip()]
+
+def analyze_aspects_sentiment(text, analyzer):
+    """
+    Returns a dict: {aspect: (sentiment_label, compound_score)}
+    Splits text on contrast words so mixed-sentiment sentences are handled better
+    """
+    chunks = split_on_contrast(text)
+    
+    result = {}
+    for chunk in chunks:
+        aspects = extract_aspects(chunk)
+        if not aspects:
+            continue
+        
+        scores = analyzer.polarity_scores(chunk)
+        compound = scores['compound']
+        label = get_sentiment_label(compound)
+        
+        for aspect in aspects:
+            # If aspect already found in another chunk, keep the stronger sentiment
+            if aspect not in result or abs(compound) > abs(result[aspect][1]):
+                result[aspect] = (label, compound)
+    
+    return result
