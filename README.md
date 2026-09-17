@@ -2,7 +2,7 @@
 
 An aspect-based sentiment analysis (ABSA) system that turns unstructured student feedback into actionable insights for academic quality monitoring — built end-to-end from data cleaning to a deployed interactive dashboard.
 
-🔗 **Live Demo:** [Add your Streamlit Cloud link here once deployed]
+🔗 **Live Demo:** [aspectlens-akil.streamlit.app](https://aspectlens-akil.streamlit.app/)
 
 ---
 
