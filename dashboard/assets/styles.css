@@ -167,3 +167,7 @@ html, body, [class*="css"] {
 .js-plotly-plot, .plot-container, .svg-container {
     touch-action: pan-y !important;
 }
+
+[data-testid="stPlotlyChart"] {
+    touch-action: pan-y !important;
+}
