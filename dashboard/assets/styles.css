@@ -153,3 +153,17 @@ html, body, [class*="css"] {
     padding: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
+
+/* Make tables horizontally scrollable on their own, instead of cutting off */
+.custom-card {
+    overflow-x: auto;
+}
+
+.custom-card table {
+    min-width: 600px;
+}
+
+/* Let vertical page scroll pass through charts on touch devices */
+.js-plotly-plot, .plot-container, .svg-container {
+    touch-action: pan-y !important;
+}

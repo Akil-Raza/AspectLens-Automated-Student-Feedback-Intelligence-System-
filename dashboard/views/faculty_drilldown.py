@@ -105,7 +105,7 @@ if selected_professor:
     )
     fig.update_yaxes(gridcolor='#F3F4F6')
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False, 'scrollZoom': False})
 
     st.write("")
 
