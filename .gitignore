@@ -1,4 +1,19 @@
+# Virtual environment
 venv/
+
+# Model files (hosted on Hugging Face Hub instead)
+model/
+
+# Python cache
 __pycache__/
 *.pyc
-.env
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Streamlit secrets (if we add any later)
+.streamlit/secrets.toml

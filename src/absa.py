@@ -1,3 +1,9 @@
+from transformers import DistilBertForSequenceClassification, DistilBertTokenizer
+import torch
+import os
+
+LABEL_NAMES = ['negative', 'neutral', 'positive']
+
 # Define keywords for each aspect
 ASPECT_KEYWORDS = {
     'explanation_clarity': [
@@ -78,3 +84,36 @@ def analyze_aspects_sentiment(text, analyzer):
                 result[aspect] = (label, compound)
     
     return result
+
+from huggingface_hub import snapshot_download
+
+def load_bert_model(model_path='model/final_model', hub_repo='AkilRaza/aspectlens-bert'):
+    """
+    Loads the fine-tuned BERT model. 
+    Tries local path first (for local development), 
+    falls back to downloading from Hugging Face Hub (for deployment).
+    """
+    if not os.path.exists(model_path):
+        model_path = snapshot_download(repo_id=hub_repo)
+    
+    model = DistilBertForSequenceClassification.from_pretrained(model_path)
+    tokenizer = DistilBertTokenizer.from_pretrained(model_path)
+    
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model = model.to(device)
+    model.eval()
+    
+    return model, tokenizer, device
+
+
+def predict_sentiment_bert(aspect, comment, model, tokenizer, device):
+    """Predicts sentiment for a single (aspect, comment) pair using BERT"""
+    input_text = f"{aspect} [SEP] {comment}"
+    inputs = tokenizer(input_text, truncation=True, padding='max_length', max_length=64, return_tensors='pt')
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+    
+    with torch.no_grad():
+        outputs = model(**inputs)
+        prediction = torch.argmax(outputs.logits, dim=1).item()
+    
+    return LABEL_NAMES[prediction]

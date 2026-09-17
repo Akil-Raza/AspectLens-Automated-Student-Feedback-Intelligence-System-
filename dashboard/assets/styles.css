@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Card style */
+.custom-card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+}
+
+.metric-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #6B7280;
+}
+
+.metric-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #111827;
+    margin: 4px 0;
+}
+
+.metric-caption {
+    font-size: 13px;
+    color: #9CA3AF;
+}
+
+/* Section header with colored dot */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.section-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.section-caption {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-top: 2px;
+    margin-bottom: 16px;
+}
+
+/* Badge pills for percentages */
+.badge {
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-critical { background-color: #FEE2E2; color: #DC2626; }
+.badge-warning { background-color: #FEF3C7; color: #D97706; }
+.badge-neutral { background-color: #F3F4F6; color: #6B7280; }
+
+/* Aspect tag pills */
+.aspect-tag {
+    background-color: #EEF2FF;
+    color: #4F46E5;
+    border: 1px solid #C7D2FE;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Severity bar */
+.severity-bar-bg {
+    background-color: #F3F4F6;
+    border-radius: 4px;
+    height: 6px;
+    width: 100px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.severity-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+}
+
+/* Professor name serif style */
+.professor-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: #111827;
+}
+
+/* Breadcrumb top bar */
+.breadcrumb {
+    color: #9CA3AF;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.live-badge {
+    color: #10B981;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #FFFFFF;
+    border-right: 1px solid #F3F4F6;
+}
+
+[data-testid="stSidebarNavLink"] {
+    border-radius: 8px;
+    padding: 8px 12px !important;
+    font-weight: 500;
+    color: #6B7280 !important;
+    margin-bottom: 2px;
+}
+
+[data-testid="stSidebarNavLink"]:hover {
+    background-color: #F5F3EE !important;
+}
+
+[data-testid="stSidebarNavLink"][aria-current="page"] {
+    background-color: #EEF2FF !important;
+    color: #4F46E5 !important;
+    font-weight: 600;
+}
+
+[data-testid="stSidebarNavLink"] span {
+    font-size: 14px !important;
+}
+
+/* Style Plotly chart containers directly as cards */
+[data-testid="stPlotlyChart"] {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
